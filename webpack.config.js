@@ -3,26 +3,29 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: 'development', // или 'production' для финального билда
-  entry: './src/index.js', // Главный JS-файл
+  mode: 'development', 
+  entry: './src/index.js', 
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js', // Итоговый JS-файл
-    clean: true, // Очищает dist при каждом билде
-  },
-  devServer: {
-    static: './dist',
-    port: 3000, 
-    hot: true, 
-    open: true, 
+    path: path.resolve(__dirname, 'dist'), 
+    filename: 'bundle.js', 
+    clean: true, 
+    publicPath: '/', 
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.css$/, 
         use: [MiniCssExtractPlugin.loader, 'css-loader'], 
       },
+    
     ],
+  },
+  devServer: {
+    static: path.resolve(__dirname, 'dist'), 
+    port: 3000,
+    hot: true, 
+    liveReload: true,
+    open: true, 
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -34,3 +37,9 @@ module.exports = {
     }),
   ],
 };
+
+
+
+
+
+

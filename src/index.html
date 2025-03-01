@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>images finder</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
 </head>
+
 <body>
-    
+    <div class="header">
+       
+            <form class="search-form" id="search-form">
+                <div class="search-container">
+                <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
+                <button type="submit" class="btn-submit" ><i class="material-icons">search</i></button>
+            </div>
+            </form>
+       
+    </div>
+
+
+    <ul class="gallery"></ul>
+    <button type="button" data-set="load" class="load is-hidden"></button>
+     <!-- MOdal -->
+<div class="backDrop is-hidden">
+    <dav class="content ">
+  
+    </dav>
+  </div>
+    <script src="index.js" type="module"></script>
 </body>
+
 </html>
