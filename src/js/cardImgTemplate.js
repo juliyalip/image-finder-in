@@ -12,7 +12,7 @@ export const cardImgTemplate = (card) => {
     return (`
         <li class="img-card">
         <div class="img-card-wrap">
-            <img src="${webformatURL}" alt="${tags}" data-sourse="${largeImageURL}" class="image"/>
+            <img src="${webformatURL}" alt="${tags}" data-source="${largeImageURL}" class="image"/>
         </div>
             <div class="stats-list">
                 <div class="stat-item">

@@ -21,9 +21,10 @@ async function onSearchImages(e) {
        if (!searchValue) {
         return alert("please enter search query")
     }
+ try{
     clearContainer()
     apiService.resetPage()
-    loadMore.show()
+  
     apiService.query = searchValue;
 
     
@@ -34,7 +35,12 @@ async function onSearchImages(e) {
 
     const cardsMarkup = makeImagesMarkup(hits);
     renderCards(cardsMarkup)
+    loadMore.show()
+ }catch(error){
+    console.log(error)
+ }finally{
     formEl.reset()
+ }
 }
 
 function makeImagesMarkup(images) {

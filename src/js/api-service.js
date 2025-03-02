@@ -5,6 +5,7 @@ export default class ApiService {
     constructor() {
         this.searchQuery = ''
         this.page = 1,
+        this.totalImages = true
         this.loading = false
     }
 
@@ -31,6 +32,14 @@ export default class ApiService {
     }
     set query(newQuery) {
         this.searchQuery = newQuery
+    }
+
+    get total(){
+        this.totalImages
+    }
+
+    set total (total){
+        this.totalImages = total
     }
     incrementPage() {
         this.page += 1
