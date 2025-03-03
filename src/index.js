@@ -5,7 +5,7 @@ import LoadMoreBtnClass from './js/loadMoreBtnClass';
 import getRefs from './js/getRefs';
 import { cardImgTemplate } from './js/cardImgTemplate';
 
-const { formEl, galleryEl } = getRefs()
+const { formEl, galleryEl , loaderEl} = getRefs()
 
 const apiService = new ApiService()
 const loadMoreEl = new LoadMoreBtnClass({ selector:'[data-action="Loader more"]', hidden: true })
@@ -24,6 +24,8 @@ async function onSearchImages(e) {
         return alert("please enter search query")
     }
  try{
+    loaderEl.classList.remove("is-hidden");
+
     clearContainer()
     apiService.resetPage()
   
@@ -38,11 +40,11 @@ async function onSearchImages(e) {
     const cardsMarkup = makeImagesMarkup(hits);
     renderCards(cardsMarkup)
     loadMoreEl.show()
-  
- }catch(error){
+  }catch(error){
     console.log(error)
  }finally{
     formEl.reset()
+    loaderEl.classList.add('is-hidden')
  }
 }
 
@@ -54,7 +56,7 @@ async function onLoadMore(e) {
         const result = await apiService.fetchArticles(); 
         console.log(result);
 
-        const { hits, totalHits } = result;
+        const { hits } = result;
         apiService.incrementPage();  
 
         const cardsMarkup = makeImagesMarkup(hits);  
@@ -63,6 +65,7 @@ async function onLoadMore(e) {
         console.log(error);
     } finally {
         loadMoreEl.enable();  
+        loaderEl.classList.add('is-hidden')
     }
 }
 
@@ -76,5 +79,4 @@ function renderCards(listMarkup) {
 
 function clearContainer() {
     galleryEl.innerHTML = ''
-    console.log("clear")
-}
+   }
